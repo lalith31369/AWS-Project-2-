@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="profile-container">
+        <h2>User Dashboard</h2>
+        {% if user %}
+            <p><strong>Username:</strong> {{ user[1] }}</p>
+            <p><strong>First Name:</strong> {{ user[3] }}</p>
+            <p><strong>Last Name:</strong> {{ user[4] }}</p>
+            <p><strong>Email:</strong> {{ user[5] }}</p>
+            {% if user[6] %}
+                <p><strong>Uploaded File:</strong> <a href="{{ url_for('static', filename=user[6]) }}">{{ user[6] }}</a></p>
+                <p><strong>Word Count:</strong> {{ user[7] }}</p>
+            {% else %}
+                <p>No file uploaded.</p>
+            {% endif %}
+        {% else %}
+            <p>User not found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
